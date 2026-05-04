@@ -2,7 +2,6 @@ package org.example.foodprojectjpa.API.Entity;
 
 
 
-import jakarta.annotation.Resource;
 import jakarta.persistence.*;
 
 import java.util.List;
