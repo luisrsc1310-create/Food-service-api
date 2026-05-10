@@ -17,7 +17,7 @@ public class OrderMapper {
                 item.getFood(),
                 item.getQuantity(),
                 item.getPrice(),
-                item.getSubTotal()
+                Double.valueOf(item.getSubTotal())
         );
 
     }

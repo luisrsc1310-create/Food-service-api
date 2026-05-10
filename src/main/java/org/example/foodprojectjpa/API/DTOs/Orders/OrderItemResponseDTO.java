@@ -13,7 +13,7 @@ public class OrderItemResponseDTO {
     private Double subTotal;
 
 
-    public OrderItemResponseDTO(Food food, Integer quantity, Double price, Integer subTotal) {
+    public OrderItemResponseDTO(Food food, Integer quantity, Double price, Double subTotal) {
         this.food = food;
         this.quantity = quantity;
         this.price = price;

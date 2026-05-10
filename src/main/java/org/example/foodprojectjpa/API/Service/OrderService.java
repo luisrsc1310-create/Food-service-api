@@ -1,6 +1,5 @@
 package org.example.foodprojectjpa.API.Service;
 
-import org.aspectj.weaver.ast.Or;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemRequestDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemResponseDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderRequestDTO;
@@ -79,7 +78,7 @@ public class OrderService {
 
     }
 
-    public OrderResponseDTO UpdateOrderStatus(Long id, StatusType status) {
+    public OrderResponseDTO updateOrderStatus(Long id, StatusType status) {
 
         Order orderToUpdate = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
@@ -91,7 +90,7 @@ public class OrderService {
 
     }
 
-    public OrderItemResponseDTO UpdateOrderItem(Long orderId, Long orderItemId, Long newFoodId, Double price, Integer quantity) {
+    public OrderItemResponseDTO updateOrderItem(Long orderId, Long orderItemId, Long newFoodId, Double price, Integer quantity) {
 
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
@@ -108,7 +107,7 @@ public class OrderService {
         item.setPrice(price);
         item.setQuantity(quantity);
 
-        orderRepository.save(order); // 🔥 VERY IMPORTANT
+        orderRepository.save(order);
 
 
         return orderMapper.toItemDTO(item);

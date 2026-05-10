@@ -28,6 +28,12 @@ public class FoodService {
         this.categoryRepository = categoryRepository;
     }
 
+    public List<FoodResponseDTO> getAll() {
+
+        return FoodMapper.toDTOList(foodRepository.findAll());
+
+    }
+
     public FoodResponseDTO createFood(FoodRequestDTO dto) {
         Food food = FoodMapper.toFood(dto);
 
