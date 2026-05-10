@@ -1,6 +1,7 @@
 package org.example.foodprojectjpa.API.Controller;
 
 import jakarta.validation.Valid;
+import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemRequestDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemResponseDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderRequestDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderResponseDTO;
@@ -12,7 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
     private final OrderService orderService;
@@ -29,24 +30,23 @@ public class OrderController {
     }
 
     @PostMapping()
-    public OrderResponseDTO createOrder(@Valid @PathVariable Long id, @RequestBody OrderRequestDTO dto) {
+    public OrderResponseDTO createOrder(@Valid @RequestBody OrderRequestDTO dto) {
 
         return orderService.createOrder(dto);
 
     }
 
     @PutMapping("/{id}")
-    public OrderResponseDTO updateOrderStatus(@Valid @PathVariable Long id, @RequestParam StatusType status) {
+    public OrderResponseDTO updateOrderStatus(@PathVariable Long id, @RequestParam StatusType status) {
 
         return orderService.updateOrderStatus(id, status);
 
     }
 
-    @PutMapping("/{id}")
-    public OrderItemResponseDTO updateOrderItem(@Valid @PathVariable Long id, @RequestParam Long orderItemId, @RequestParam Long newFoodId, @RequestParam Double price, @RequestParam Integer quantity) {
+    @PutMapping("/{orderId}/items/{itemId}")
+    public OrderItemResponseDTO updateOrderItem( @PathVariable Long orderId, @PathVariable Long itemId, @RequestBody @Valid OrderItemRequestDTO dto) {
 
-        return orderService.updateOrderItem(id, orderItemId, newFoodId, price, quantity);
-
+        return orderService.updateOrderItem(orderId, itemId, dto);
     }
 
     @DeleteMapping("/{id}")

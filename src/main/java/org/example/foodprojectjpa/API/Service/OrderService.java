@@ -1,5 +1,6 @@
 package org.example.foodprojectjpa.API.Service;
 
+import org.example.foodprojectjpa.API.DTOs.Food.FoodRequestDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemRequestDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemResponseDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderRequestDTO;
@@ -90,22 +91,24 @@ public class OrderService {
 
     }
 
-    public OrderItemResponseDTO updateOrderItem(Long orderId, Long orderItemId, Long newFoodId, Double price, Integer quantity) {
+    public OrderItemResponseDTO updateOrderItem(Long id,  Long itemId, OrderItemRequestDTO dto) {
 
-        Order order = orderRepository.findById(orderId)
+        Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
 
         OrderItem item = order.getItems().stream()
-                .filter(i -> i.getId().equals(orderItemId))
+                .filter(i -> i.getId().equals(itemId))
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("Item not found"));
 
-        Food food = foodRepository.findById(newFoodId)
+
+
+        Food food = foodRepository.findById(dto.getFoodId())
                 .orElseThrow(() -> new ResourceNotFoundException("Food not found"));
 
         item.setFood(food);
-        item.setPrice(price);
-        item.setQuantity(quantity);
+        item.setPrice(food.getPrice());
+        item.setQuantity(dto.getQuantity());
 
         orderRepository.save(order);
 
