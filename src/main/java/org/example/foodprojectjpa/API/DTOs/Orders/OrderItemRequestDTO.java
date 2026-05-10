@@ -1,14 +1,17 @@
 package org.example.foodprojectjpa.API.DTOs.Orders;
 
 
-import org.springframework.stereotype.Component;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
-@Component
 public class OrderItemRequestDTO {
 
-
+    @NotBlank(message = "Food is blank")
     private Long foodId;
+
+    @Positive
     private Integer quantity;
+
     private Double subtotal;
 
     public Double getSubtotal() {

@@ -1,22 +1,22 @@
 package org.example.foodprojectjpa.API.Entity;
 
 import jakarta.persistence.*;
-import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemRequestDTO;
 
 
 @Entity
 @Table(name = "order_item")
-public class OrderItem extends OrderItemRequestDTO {
-
+public class OrderItem {
 
         @Id
         @GeneratedValue
         private Long id;
 
         @ManyToOne
+        @JoinColumn(name = "order_id")
         private Order order;
 
         @ManyToOne
+        @JoinColumn(name = "food_id")
         private Food food;
 
         private Integer quantity;
@@ -63,8 +63,8 @@ public class OrderItem extends OrderItemRequestDTO {
         this.price = price;
     }
 
-    public Integer getSubTotal() {
-        return subTotal;
+    public Double getSubTotal() {
+        return price * quantity;
     }
 
     public void setSubTotal(Integer subTotal) {

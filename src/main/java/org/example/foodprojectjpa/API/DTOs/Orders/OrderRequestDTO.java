@@ -1,6 +1,8 @@
 package org.example.foodprojectjpa.API.DTOs.Orders;
 
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import org.example.foodprojectjpa.API.Entity.OrderItem;
 import org.example.foodprojectjpa.API.Entity.StatusType;
 
@@ -8,17 +10,17 @@ import java.util.List;
 
 public class OrderRequestDTO {
 
-    private List<OrderItem> items;
+    private List<OrderItemRequestDTO> items;
 
     private StatusType status;
 
     private Double Total;
 
-    public List<OrderItem> getItems() {
+    public List<OrderItemRequestDTO> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderItem> items) {
+    public void setItems(List<OrderItemRequestDTO> items) {
         this.items = items;
     }
 

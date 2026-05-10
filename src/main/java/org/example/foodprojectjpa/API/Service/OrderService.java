@@ -10,6 +10,7 @@ import org.example.foodprojectjpa.API.Entity.Order;
 import org.example.foodprojectjpa.API.Entity.OrderItem;
 import org.example.foodprojectjpa.API.Entity.StatusType;
 import org.example.foodprojectjpa.API.ExceptionsHandlers.ResourceNotFoundException;
+import org.example.foodprojectjpa.API.Mapper.FoodMapper;
 import org.example.foodprojectjpa.API.Mapper.OrderMapper;
 import org.example.foodprojectjpa.API.Repository.FoodRepository;
 import org.example.foodprojectjpa.API.Repository.OrderRepository;
@@ -53,9 +54,16 @@ public class OrderService {
             item.setQuantity(itemDTO.getQuantity());
 
             items.add(item);
+
         }
 
         order.setItems(items);
+        order.setStatus(dto.getStatus());
+        order.setTotal(
+                items.stream()
+                        .mapToDouble(OrderItem::getSubTotal)
+                        .sum()
+        );
 
         return orderMapper.toDTO(orderRepository.save(order));
 
