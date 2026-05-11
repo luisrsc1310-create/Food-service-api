@@ -51,8 +51,12 @@ public class Order {
         return Total;
     }
 
-    public void setTotal(Double total) {
-        Total = total;
+    public void setTotal() {
+        Total = items.stream()
+                .mapToDouble(OrderItem::getSubTotal)
+                .sum();
     }
+
+
 
 }

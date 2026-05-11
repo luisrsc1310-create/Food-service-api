@@ -59,11 +59,7 @@ public class OrderService {
 
         order.setItems(items);
         order.setStatus(dto.getStatus());
-        order.setTotal(
-                items.stream()
-                        .mapToDouble(OrderItem::getSubTotal)
-                        .sum()
-        );
+        order.setTotal();
 
         return orderMapper.toDTO(orderRepository.save(order));
 
@@ -99,7 +95,31 @@ public class OrderService {
 
     }
 
-    public OrderItemResponseDTO updateOrderItem(Long id,  Long itemId, OrderItemRequestDTO dto) {
+    public OrderResponseDTO addFoodToOrder(Long id, OrderItemRequestDTO dto) {
+
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+
+        Food food = foodRepository.findById(dto.getFoodId())
+                .orElseThrow(() -> new ResourceNotFoundException("Food not found"));
+
+        OrderItem orderItem = new OrderItem();
+
+        orderItem.setOrder(order);
+        orderItem.setQuantity(dto.getQuantity());
+        orderItem.setFood(food);
+        orderItem.setPrice(food.getPrice());
+        orderItem.setSubTotal();
+
+
+
+
+        order.getItems().add(orderItem);
+
+        return orderMapper.toDTO(order);
+    }
+
+    public OrderItemResponseDTO updateOrderItem(Long id, Long itemId, OrderItemRequestDTO dto) {
 
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
@@ -108,7 +128,6 @@ public class OrderService {
                 .filter(i -> i.getId().equals(itemId))
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("Item not found"));
-
 
 
         Food food = foodRepository.findById(dto.getFoodId())

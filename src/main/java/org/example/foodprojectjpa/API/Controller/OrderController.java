@@ -1,6 +1,7 @@
 package org.example.foodprojectjpa.API.Controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.example.foodprojectjpa.API.DTOs.Food.FoodRequestDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemRequestDTO;
 import org.example.foodprojectjpa.API.DTOs.Orders.OrderItemResponseDTO;
@@ -19,11 +20,9 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
-    private final FoodService foodService;
 
-    public OrderController(OrderService orderService, FoodService foodService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.foodService = foodService;
     }
 
     @GetMapping
@@ -40,10 +39,10 @@ public class OrderController {
 
     }
 
-    @PutMapping("/{id}")
-    public OrderResponseDTO updateOrderStatus(@PathVariable Long id, @RequestParam StatusType status) {
+    @PutMapping("/{orderId}")
+    public OrderResponseDTO updateOrderStatus(@PathVariable Long orderId, @RequestParam StatusType status) {
 
-        return orderService.updateOrderStatus(id, status);
+        return orderService.updateOrderStatus(orderId, status);
 
     }
 
@@ -53,6 +52,11 @@ public class OrderController {
         return orderService.updateOrderItem(orderId, itemId, dto);
     }
 
+    @PostMapping("/{orderId}/items")
+    public OrderResponseDTO addOrderItem(@PathVariable Long orderId, @RequestBody     OrderItemRequestDTO dto) {
+
+        return orderService.addFoodToOrder(orderId, dto);
+    }
 
 
     @DeleteMapping("/{id}")
