@@ -18,6 +18,7 @@ public class OrderMapper {
 
     public OrderItemResponseDTO toItemDTO(OrderItem item) {
         return new OrderItemResponseDTO(
+                item.getId(),
                 item.getFood(),
                 item.getQuantity(),
                 item.getPrice(),
@@ -30,7 +31,7 @@ public class OrderMapper {
         OrderResponseDTO dto = new OrderResponseDTO();
 
         dto.setId(order.getId());
-        dto.setStatus(StatusType.valueOf(order.getStatus().name()));
+        dto.setStatus(order.getStatus());
 
         List<OrderItemResponseDTO> items = order.getItems()
                 .stream()

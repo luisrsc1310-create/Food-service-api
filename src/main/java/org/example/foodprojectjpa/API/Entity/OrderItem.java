@@ -21,7 +21,7 @@ public class OrderItem {
 
         private Integer quantity;
         private Double price;
-        private Integer subTotal;
+        private Double subTotal;
 
     public Long getId() {
         return id;
@@ -67,7 +67,7 @@ public class OrderItem {
         return price * quantity;
     }
 
-    public void setSubTotal(Integer subTotal) {
+    public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
 }

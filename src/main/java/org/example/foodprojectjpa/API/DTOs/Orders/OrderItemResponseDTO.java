@@ -7,13 +7,15 @@ import org.example.foodprojectjpa.API.Entity.Food;
 
 public class OrderItemResponseDTO {
 
+    private Long id;
     private Food food;
     private Integer quantity;
     private Double price;
     private Double subTotal;
 
 
-    public OrderItemResponseDTO(Food food, Integer quantity, Double price, Double subTotal) {
+    public OrderItemResponseDTO(Long id, Food food, Integer quantity, Double price, Double subTotal) {
+        this.id = id;
         this.food = food;
         this.quantity = quantity;
         this.price = price;
@@ -34,5 +36,9 @@ public class OrderItemResponseDTO {
 
     public Double getSubTotal() {
         return getQuantity() * getPrice();
+    }
+
+    public Long getId() {
+        return id;
     }
 }

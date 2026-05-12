@@ -109,14 +109,12 @@ public class OrderService {
         orderItem.setQuantity(dto.getQuantity());
         orderItem.setFood(food);
         orderItem.setPrice(food.getPrice());
-        orderItem.setSubTotal();
-
-
-
 
         order.getItems().add(orderItem);
 
-        return orderMapper.toDTO(order);
+        Order savedOrder = orderRepository.save(order);
+
+        return orderMapper.toDTO(savedOrder);
     }
 
     public OrderItemResponseDTO updateOrderItem(Long id, Long itemId, OrderItemRequestDTO dto) {

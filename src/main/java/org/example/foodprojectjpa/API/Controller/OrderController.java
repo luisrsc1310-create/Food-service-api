@@ -26,7 +26,7 @@ public class OrderController {
     }
 
     @GetMapping
-    public Page<OrderResponseDTO> getOrders(@PageableDefault(size = 5) Pageable pageable) {
+    public Page<OrderResponseDTO> getOrders(@PageableDefault(size = 12) Pageable pageable) {
 
         return orderService.getAll(pageable);
 
