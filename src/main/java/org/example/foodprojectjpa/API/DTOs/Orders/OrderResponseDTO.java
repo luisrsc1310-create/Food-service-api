@@ -14,7 +14,7 @@ public class OrderResponseDTO {
 
     private StatusType status;
 
-    private Double Total;
+    private Double total;
 
     public Long getId() {
         return id;
@@ -41,10 +41,10 @@ public class OrderResponseDTO {
     }
 
     public Double getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(Double total) {
-        Total = total;
+        total = total;
     }
 }

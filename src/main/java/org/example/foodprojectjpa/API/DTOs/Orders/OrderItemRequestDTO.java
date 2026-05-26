@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Positive;
 
 public class OrderItemRequestDTO {
 
-    @NotBlank(message = "Food is blank")
+
     private Long foodId;
 
     @Positive

@@ -86,9 +86,6 @@ function loadFoods() {
             data.content.forEach((food, index) => {
 
 
-
-
-
                 const tr = document.createElement("tr");
 
 
@@ -119,8 +116,7 @@ function fillForm(id, name, price) {
 
 function updateFoods() {
 
-   const id =  document.getElementById("idToUpdate").value;
-
+    const id = document.getElementById("idToUpdate").value;
 
 
     const nameUpdate = document.getElementById("nameToUpdate").value;

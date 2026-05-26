@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="orderCss.css">
+    <title></title>
+</head>
+
+<div class="modal fade" id="updateModalOrder" tabindex="-1" aria-labelledby="updateModalOrder" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="idToCloseUpdateOrder">
+                <h1 class="modal-title fs-5">OrderUpdate</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="orderUpdate-form">
+                    <div class="input-group mb-3">
+                        <input type="hidden" id="idToUpdateOrder">
+                        <label class="input-group-text" for="statusSelectUpdate">Options</label>
+                        <select class="form-select" id="statusSelectUpdate">
+                            <option value="0">PENDING</option>
+                            <option value="1">PROGRESS</option>
+                            <option value="2">DONE</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createModalOrder" tabindex="-1" aria-labelledby="createModalOrder" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="idToCloseCreateOrder">
+                <h1 class="modal-title fs-5">Create Order</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form action="" id="createOrder-form">
+                    <label for="selectFoodOptions" class="input-group-text">Food Options</label>
+                    <select class="form-select" id="selectFoodOptions"></select>
+                    <div id="cardFoodDiv" class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col">
+                            <div class="card">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <label for="statusSelectCreate" class="input-group-text">Status</label>
+                    <select class="form-select" id="statusSelectCreate">
+                        <option value="0">PENDING</option>
+                        <option value="1">PROGRESS</option>
+                        <option value="2">DONE</option>
+                    </select>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<body>
+
+<div class="container-fluid ">
+    <div id="buttons">
+        <button id="createOrder" type="button" class="btn btn-prim  ary" data-bs-toggle="modal" data-bs-target="#createModalOrder">Create Order</button>
+        <button id="updateOrderItem" type="button" class="btn btn-primary">Update Order Item</button>
+        <button id="updateOrder" type="button" class="btn btn-primary">Update Status Order</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="container-lg table-container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Status</th>
+                <th scope="col">Items</th>
+                <th scope="col">Total</th>
+                <th scope="col">Options</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-dividir" id="order-list">
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+<script src="orderScript.js"></script>
+</body>
+</html>
